@@ -1,0 +1,19 @@
+[
+  {
+    "DateOfBirth": "1990-05-15",
+    "Location": "New York, USA",
+    "Name": "John Doe",
+    "Bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "KnownAs": "JD",
+    "UserName": "John Doe"
+  },
+  {
+    "DateOfBirth": "1985-08-22",
+    "Location": "London, UK",
+    "Name": "Jane Smith",
+    "Bio": "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "KnownAs": "JS",
+    "UserName": "Jane Smith"
+  }
+ 
+]

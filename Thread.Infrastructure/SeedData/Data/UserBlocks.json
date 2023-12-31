@@ -1,0 +1,102 @@
+[
+  {
+    "sourceUserId": 1,
+    "destinationUserId": 2,
+    "createdAt": "2023-11-17T08:30:00Z"
+  },
+  {
+    "sourceUserId": 3,
+    "destinationUserId": 1,
+    "createdAt": "2023-11-17T10:45:00Z"
+  },
+  {
+    "sourceUserId": 2,
+    "destinationUserId": 4,
+    "createdAt": "2023-11-17T12:15:00Z"
+  },
+  {
+    "sourceUserId": 5,
+    "destinationUserId": 1,
+    "createdAt": "2023-11-17T14:20:00Z"
+  },
+  {
+    "sourceUserId": 4,
+    "destinationUserId": 6,
+    "createdAt": "2023-11-17T16:45:00Z"
+  },
+  {
+    "sourceUserId": 7,
+    "destinationUserId": 2,
+    "createdAt": "2023-11-17T18:30:00Z"
+  },
+  {
+    "sourceUserId": 8,
+    "destinationUserId": 9,
+    "createdAt": "2023-11-17T20:10:00Z"
+  },
+  {
+    "sourceUserId": 10,
+    "destinationUserId": 1,
+    "createdAt": "2023-11-17T22:05:00Z"
+  },
+  {
+    "sourceUserId": 6,
+    "destinationUserId": 11,
+    "createdAt": "2023-11-17T23:50:00Z"
+  },
+  {
+    "sourceUserId": 12,
+    "destinationUserId": 2,
+    "createdAt": "2023-11-18T01:30:00Z"
+  },
+  {
+    "sourceUserId": 13,
+    "destinationUserId": 1,
+    "createdAt": "2023-11-18T03:20:00Z"
+  },
+  {
+    "sourceUserId": 14,
+    "destinationUserId": 3,
+    "createdAt": "2023-11-18T05:10:00Z"
+  },
+  {
+    "sourceUserId": 15,
+    "destinationUserId": 1,
+    "createdAt": "2023-11-18T07:00:00Z"
+  },
+  {
+    "sourceUserId": 16,
+    "destinationUserId": 17,
+    "createdAt": "2023-11-18T09:15:00Z"
+  },
+  {
+    "sourceUserId": 18,
+    "destinationUserId": 1,
+    "createdAt": "2023-11-18T11:30:00Z"
+  },
+  {
+    "sourceUserId": 19,
+    "destinationUserId": 20,
+    "createdAt": "2023-11-18T13:45:00Z"
+  },
+  {
+    "sourceUserId": 2,
+    "destinationUserId": 1,
+    "createdAt": "2023-11-18T16:00:00Z"
+  },
+  {
+    "sourceUserId": 3,
+    "destinationUserId": 4,
+    "createdAt": "2023-11-18T18:15:00Z"
+  },
+  {
+    "sourceUserId": 5,
+    "destinationUserId": 1,
+    "createdAt": "2023-11-18T20:30:00Z"
+  },
+  {
+    "sourceUserId": 6,
+    "destinationUserId": 7,
+    "createdAt": "2023-11-18T22:45:00Z"
+  }
+]

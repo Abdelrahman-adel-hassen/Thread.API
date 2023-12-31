@@ -1,0 +1,15 @@
+﻿global using Mapster;
+global using Microsoft.AspNetCore.Http;
+global using Microsoft.AspNetCore.Identity;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.Extensions.DependencyInjection;
+global using System.Linq.Expressions;
+global using System.Security.Claims;
+global using System.Text.Json;
+global using System.Text.Json.Serialization;
+global using Thread.Application.Helpers;
+global using Thread.Application.Specifications;
+global using Thread.Domain.DTOs;
+global using Thread.Domain.Entities;
+global using Thread.Domain.Enums;
+global using Thread.Domain.Helpers;
