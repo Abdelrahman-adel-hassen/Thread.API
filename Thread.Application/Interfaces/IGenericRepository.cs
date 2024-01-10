@@ -8,6 +8,7 @@ public interface IGenericRepository<T> where T : BaseEntity
     Task<bool> IsEntityExistWithSpec(ISpecification<T> spec);
     Task<IReadOnlyList<T>> ListAsync(ISpecification<T> spec);
     Task<int> CountAsync(ISpecification<T> spec);
+    Task AddRangeAsync(ICollection<T> entity);
     void Add(T entity);
     void Update(T entity);
     void Delete(T entity);

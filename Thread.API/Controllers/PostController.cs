@@ -7,13 +7,11 @@ public class PostController : BaseApiController
 {
     private readonly ILogger<PostController> _logger;
     private readonly IPostService _postService;
-    private readonly ITrendService _trendService;
     private readonly IDataProtector _dataProtector;
-    public PostController(ILogger<PostController> logger, IPostService PostService, ITrendService trendService, IDataProtectionProvider dataProtectionProvider)
+    public PostController(ILogger<PostController> logger, IPostService PostService, IDataProtectionProvider dataProtectionProvider)
     {
         _logger = logger;
         _postService = PostService;
-        _trendService = trendService;
         _dataProtector = dataProtectionProvider.CreateProtector("SecureCoding");
 
     }
@@ -36,8 +34,12 @@ public class PostController : BaseApiController
     [ProducesResponseType(typeof(string), (int)HttpStatusCode.BadRequest)]
     public async Task<IActionResult> AddPost([FromBody] PostDto postDto)
     {
+        if(postDto is null)
+            return BadRequest("content of post connot be empty");
+
         if(string.IsNullOrWhiteSpace(postDto.Body) && postDto.Photos.Count == 0)
             return BadRequest("content of post connot be empty");
+
 
         var result = await _postService.AddPostAsync(postDto);
 
@@ -45,8 +47,6 @@ public class PostController : BaseApiController
             return BadRequest(result.Error);
 
         var postId = result.Value;
-
-        await _trendService.AddTrend(postDto.Body, postId);
 
         var postToReturnDto = postDto.Adapt<PostToReturnDto>();
         postToReturnDto.Id = _dataProtector.Protect(postId.ToString());
@@ -91,18 +91,5 @@ public class PostController : BaseApiController
         return result.Match<IActionResult>(isUpdated => NoContent(), BadRequest);
     }
 
-    [HttpGet("Trend")]
-    [ProducesResponseType(typeof(IReadOnlyList<PostToReturnDto>), (int)HttpStatusCode.OK)]
-    [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
-    public async Task<IActionResult> GetAllTrendPosts([FromQuery] TrendParams trendParams)
-    {
-        trendParams.Id = int.Parse(_dataProtector.Unprotect(trendParams.IdProtector));
 
-        var postToReturnDtoResult = await _postService.GetAllTrendPosts(trendParams);
-
-        if(postToReturnDtoResult.IsSuccess)
-            Response.AddPaginationHeader(await _postService.GetPostsTrendCountAsync(trendParams.Id), trendParams.PageNumber, trendParams.CurrentPageSize);
-
-        return postToReturnDtoResult.Match<IActionResult>(Ok, NotFound);
-    }
 }

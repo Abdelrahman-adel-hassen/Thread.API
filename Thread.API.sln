@@ -5,11 +5,13 @@ VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Thread.API", "Thread.API\Thread.API.csproj", "{E493176A-B64B-4920-BD4C-FAF17210A1C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thread.Application", "Thread.Application\Thread.Application.csproj", "{3BBEC37F-50B8-4DF2-A61D-4FEAB1495D48}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Thread.Application", "Thread.Application\Thread.Application.csproj", "{3BBEC37F-50B8-4DF2-A61D-4FEAB1495D48}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thread.Domain", "Thread.Domain\Thread.Domain.csproj", "{EEFE8C4C-F813-4C00-B976-CEC2458835BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Thread.Domain", "Thread.Domain\Thread.Domain.csproj", "{EEFE8C4C-F813-4C00-B976-CEC2458835BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thread.Infrastructure", "Thread.Infrastructure\Thread.Infrastructure.csproj", "{7F9869A8-62F2-4971-8FC2-40E38E69009A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Thread.Infrastructure", "Thread.Infrastructure\Thread.Infrastructure.csproj", "{7F9869A8-62F2-4971-8FC2-40E38E69009A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thread.Infrastructure.Tests", "Thread.Infrastructure.Tests\Thread.Infrastructure.Tests.csproj", "{44E54844-760A-4F3F-BD06-E5FDF7FA76F4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{7F9869A8-62F2-4971-8FC2-40E38E69009A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F9869A8-62F2-4971-8FC2-40E38E69009A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7F9869A8-62F2-4971-8FC2-40E38E69009A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44E54844-760A-4F3F-BD06-E5FDF7FA76F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44E54844-760A-4F3F-BD06-E5FDF7FA76F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44E54844-760A-4F3F-BD06-E5FDF7FA76F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44E54844-760A-4F3F-BD06-E5FDF7FA76F4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

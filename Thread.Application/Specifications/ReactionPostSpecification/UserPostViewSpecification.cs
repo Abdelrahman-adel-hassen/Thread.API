@@ -8,10 +8,10 @@ public class UserPostViewSpecification : BaseSpecification<UserPostView>
 
     public static UserPostViewSpecification GetUserPostViewSpecification()
     {
-        return new UserPostViewSpecification(up => up.UserId == UserIdShared.UserId);
+        return new UserPostViewSpecification(up => up.UserId == SharedProperities.UserId);
     }
     public static UserPostViewSpecification GetUserPostViewByPostIdSpecification(int postId)
     {
-        return new UserPostViewSpecification(up => up.UserId == UserIdShared.UserId && up.PostId == postId);
+        return new UserPostViewSpecification(up => up.UserId == SharedProperities.UserId && up.PostId == postId);
     }
 }

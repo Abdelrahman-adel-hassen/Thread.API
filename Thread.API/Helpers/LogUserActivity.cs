@@ -14,13 +14,17 @@ public class LogUserActivity : IAsyncActionFilter
 
     public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
     {
+
+        var userId = context.HttpContext.User.GetUserId();
+
+        SharedProperities.UserId = userId;
+
         var resultContext = await next();
 
         if(!resultContext.HttpContext.User.Identity.IsAuthenticated)
             return;
 
-        var userId = resultContext.HttpContext.User.GetUserId();
-        UserIdShared.UserId = userId;
+        //var userId = resultContext.HttpContext.User.GetUserId();
 
         var user = await _userService.GetUserWithoutInclude(userId);
 

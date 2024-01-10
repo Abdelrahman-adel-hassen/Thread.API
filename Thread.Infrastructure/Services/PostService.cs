@@ -1,21 +1,25 @@
 ﻿namespace Thread.Infrastructure.Services;
-internal class PostService : IPostService
+public class PostService : IPostService
 {
     private readonly IUnitOfWork _unitOfWork;
-
-    public PostService(IUnitOfWork unitOfWork)
+    private readonly ITrendService _trendService;
+    public PostService(IUnitOfWork unitOfWork, ITrendService trendService)
     {
         _unitOfWork = unitOfWork;
+        _trendService = trendService;
     }
 
     public async Task<Result<int, string>> AddPostAsync(PostDto postDto)
     {
         var post = postDto.Adapt<Post>();
-        post.UserId = UserIdShared.UserId;
+        post.UserId = SharedProperities.UserId;
 
         _unitOfWork.Repository<Post>().Add(post);
 
         await _unitOfWork.CompleteAsync();
+
+        if(post.Id > 0)
+            await _trendService.AddTrend(postDto.Body, post.Id);
 
         return post.Id > 0 ? post.Id : "Problem addding post";
     }
@@ -43,6 +47,7 @@ internal class PostService : IPostService
     public async Task<Result<IReadOnlyList<PostToReturnDto>, string>> GetPostsAsync(PostParams postParams)
     {
         var specification = PostSpecification.GetAllPostsWithPaginationSpecification(postParams);
+
         var posts = await _unitOfWork.Repository<Post>().ListAsync(specification);
 
         List<PostToReturnDto> postToReturnDtos = new();
@@ -50,7 +55,7 @@ internal class PostService : IPostService
         {
             var IscurrentUserFollowPostOwnerOrIsPublicPost = !postParams.IsFolowing;
 
-            var currentUserIsPostOwner = post.UserId == UserIdShared.UserId;
+            var currentUserIsPostOwner = post.UserId == SharedProperities.UserId;
 
             if(postParams.IsFolowing && !currentUserIsPostOwner)
                 IscurrentUserFollowPostOwnerOrIsPublicPost = await _unitOfWork.Repository<UserFollow>().IsEntityExistWithSpec(UserFollowSpecification.GetUsersFollowingByUserIdSpecification(post.UserId));
@@ -66,13 +71,6 @@ internal class PostService : IPostService
 
         return postToReturnDtos;
     }
-    public async Task<int> GetPostsCountAsync(PostParams postParams)
-    {
-        var specification = PostSpecification.GetAllPostsSpecification(postParams);
-        var postsCount = await _unitOfWork.Repository<Post>().CountAsync(specification);
-
-        return postsCount;
-    }
     public async Task<Result<PostToReturnDto, string>> GetPostAsync(int id)
     {
         var post = await _unitOfWork.Repository<Post>().GetEntityWithSpec(PostSpecification.GetPostSpecification(id));
@@ -81,6 +79,14 @@ internal class PostService : IPostService
 
         return post is null ? $"Post not found with id {id}" : postToReturnDto;
     }
+    public async Task<int> GetPostsCountAsync(PostParams postParams)
+    {
+        var specification = PostSpecification.GetAllPostsSpecification(postParams);
+        var postsCount = await _unitOfWork.Repository<Post>().CountAsync(specification);
+
+        return postsCount;
+    }
+
 
     public async Task<Result<IReadOnlyList<PostToReturnDto>, string>> GetAllTrendPosts(TrendParams trendParams)
     {
@@ -90,13 +96,13 @@ internal class PostService : IPostService
             return $"Posts not found with trendId {trendParams.Id}";
 
 
-        var postToReturnDto = new List<PostToReturnDto>();
+        var postToReturnDtos = new List<PostToReturnDto>();
 
         foreach(var trendPost in trendPosts)
         {
-            postToReturnDto.Add(await GetpostToReturnDto(trendPost.Post));
+            postToReturnDtos.Add(await GetpostToReturnDto(trendPost.Post));
         }
-        return postToReturnDto;
+        return postToReturnDtos;
 
     }
 

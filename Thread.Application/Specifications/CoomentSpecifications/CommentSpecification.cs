@@ -26,15 +26,15 @@ public class CommentSpecification : BaseSpecification<Comment>
     }
     public static CommentSpecification GetAllCommentsSpecificationPagination(CommentParams commentParams)
     {
-        Expression<Func<Comment, bool>> criteria = commentParams.InnertCommentId.HasValue ? comment => comment.InnerCommentId == commentParams.InnertCommentId : comment => comment.PostId == commentParams.PostId;
+        Expression<Func<Comment, bool>> criteria = comment => (!commentParams.InnertCommentId.HasValue || comment.InnerCommentId == commentParams.InnertCommentId) && comment.PostId == commentParams.PostId;
 
-        Func<IQueryable<Comment>, IIncludableQueryable<Comment, object>> include = comment => comment.Include(c => c.User);
+        Func<IQueryable<Comment>, IIncludableQueryable<Comment, object>>? include = comment => comment.Include(c => c.User);
 
         return new CommentSpecification(criteria, include, (commentParams.PageNumber - 1) * commentParams.CurrentPageSize, commentParams.CurrentPageSize);
     }
     public static CommentSpecification GetAllCommentsSpecification(CommentParams commentParams)
     {
-        Expression<Func<Comment, bool>> criteria = commentParams.InnertCommentId.HasValue ? comment => comment.InnerCommentId == commentParams.InnertCommentId : comment => comment.PostId == commentParams.PostId;
+        Expression<Func<Comment, bool>> criteria = comment => (!commentParams.InnertCommentId.HasValue || comment.InnerCommentId == commentParams.InnertCommentId) && comment.PostId == commentParams.PostId;
 
         return new CommentSpecification(criteria);
     }

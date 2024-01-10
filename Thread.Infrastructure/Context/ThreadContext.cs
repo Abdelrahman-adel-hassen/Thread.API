@@ -8,6 +8,10 @@ public class ThreadContext : IdentityDbContext<AppUser, AppRole, int,
     public ThreadContext(DbContextOptions<ThreadContext> options) : base(options)
     {
     }
+    public ThreadContext()
+    {
+
+    }
 
     public DbSet<Comment> Comments { get; set; }
     public DbSet<Message> Messages { get; set; }

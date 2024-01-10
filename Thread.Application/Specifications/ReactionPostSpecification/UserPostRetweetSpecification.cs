@@ -9,10 +9,10 @@ public class ReactionPostRetweetSpecification : BaseSpecification<UserPostRetwee
     public static ReactionPostRetweetSpecification GetUserPostRetweetSpecification()
     {
 
-        return new ReactionPostRetweetSpecification(up => up.UserId == UserIdShared.UserId);
+        return new ReactionPostRetweetSpecification(up => up.UserId == SharedProperities.UserId);
     }
     public static ReactionPostRetweetSpecification GetUserPostRetweetByPostIdSpecification(int postId)
     {
-        return new ReactionPostRetweetSpecification(up => up.UserId == UserIdShared.UserId && up.PostId == postId);
+        return new ReactionPostRetweetSpecification(up => up.UserId == SharedProperities.UserId && up.PostId == postId);
     }
 }

@@ -2,5 +2,5 @@
 public class PaginationParams
 {
     public int PageNumber { get; set; } = 1;
-    public int CurrentPageSize { get; set; }
+    public int CurrentPageSize { get; set; } = 50;
 }

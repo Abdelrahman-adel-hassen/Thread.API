@@ -5,10 +5,10 @@ public class UserFollowSpecification : BaseSpecification<UserFollow>
 
     public static UserFollowSpecification GetUsersFollowingSpecification()
     {
-        return new(ub => ub.SourceUserId == UserIdShared.UserId);
+        return new(ub => ub.SourceUserId == SharedProperities.UserId);
     }
     public static UserFollowSpecification GetUsersFollowingByUserIdSpecification(int UserId)
     {
-        return new(ub => ub.SourceUserId == UserIdShared.UserId && ub.DestinationUserId == UserId);
+        return new(ub => ub.SourceUserId == SharedProperities.UserId && ub.DestinationUserId == UserId);
     }
 }

@@ -1,5 +1,5 @@
 ﻿namespace Thread.Infrastructure.Services;
-internal class CommentService : ICommentService
+public class CommentService : ICommentService
 {
     private readonly IUnitOfWork _unitOfWork;
 
@@ -10,8 +10,15 @@ internal class CommentService : ICommentService
     public async Task<Result<int, string>> AddCommentAsync(CommentDto commentDto)
     {
         var comment = commentDto.Adapt<Comment>();
-        comment.UserId = UserIdShared.UserId;
-        _unitOfWork.Repository<Comment>().Add(comment);
+        var comments = new List<Comment>() { comment };
+        if(commentDto.InnerCommentId.HasValue)
+        {
+            var parentComment = await _unitOfWork.Repository<Comment>().GetByIdAsync(commentDto.InnerCommentId.Value);
+            parentComment.NumberOfInnerComments++;
+            comments.Add(parentComment);
+        }
+
+        await _unitOfWork.Repository<Comment>().AddRangeAsync(comments);
 
         await _unitOfWork.CompleteAsync();
 

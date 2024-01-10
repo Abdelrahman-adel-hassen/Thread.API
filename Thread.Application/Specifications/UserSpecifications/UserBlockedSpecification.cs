@@ -10,6 +10,6 @@ public class UserBlockedSpecification : BaseSpecification<UserBlock>
     }
     public static UserBlockedSpecification GetUsersBlockedSpecification()
     {
-        return new UserBlockedSpecification(UB => UB.DestinationUserId == UserIdShared.UserId || UB.SourceUserId == UserIdShared.UserId);
+        return new UserBlockedSpecification(UB => UB.DestinationUserId == SharedProperities.UserId || UB.SourceUserId == SharedProperities.UserId);
     }
 }

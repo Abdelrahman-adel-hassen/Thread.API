@@ -1,6 +1,4 @@
-﻿using Thread.Application.Helpers;
-
-namespace Thread.API.Controllers;
+﻿namespace Thread.API.Controllers;
 public class TrendController : BaseApiController
 {
     private readonly ILogger<TrendController> _logger;

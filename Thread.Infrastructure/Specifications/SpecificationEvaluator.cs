@@ -16,10 +16,10 @@ public class SpecificationEvaluator<TEntity> where TEntity : BaseEntity
 
         if(spec.DisableTracking)
             query = query.AsNoTracking();
-
         if(spec.Include != null)
+        {
             query = spec.Include(query);
-
+        }
         return query;
     }
 }

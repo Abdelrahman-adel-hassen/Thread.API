@@ -23,7 +23,8 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
 
     private IQueryable<T> ApplySpecification(ISpecification<T> spec) => SpecificationEvaluator<T>.GetQuery(_context.Set<T>().AsQueryable(), spec);
 
-    public void Add(T entity) => _context.Set<T>().Add(entity);
+    public void Add(T entity) => _context.Set<T>().AddAsync(entity);
+    public async Task AddRangeAsync(ICollection<T> entity) => await _context.Set<T>().AddRangeAsync(entity);
 
     public void Update(T entity) => _context.Set<T>().Update(entity);
 

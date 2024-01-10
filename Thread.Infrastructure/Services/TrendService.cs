@@ -2,7 +2,7 @@
 using Thread.Application.Specifications.TrendConfiguration;
 
 namespace Thread.Infrastructure.Services;
-internal class TrendService : ITrendService
+public class TrendService : ITrendService
 {
     private readonly IUnitOfWork _unitOfWork;
 
@@ -39,21 +39,21 @@ internal class TrendService : ITrendService
             }
 
         }
-        catch(Exception)
+        catch(Exception ex)
         {
-
+            return $"something happened-{ex.Message}";
         }
 
         return true;
     }
-    private HashSet<string> GetUniqueHashWords(string body)
+    private static HashSet<string> GetUniqueHashWords(string body)
     {
         HashSet<string> uniqueWords = new();
 
-        string pattern = @"#\w*";
+        string pattern = @"#\S*";
         MatchCollection tags = Regex.Matches(body, pattern);
 
-        foreach(Match match in tags)
+        foreach(Match match in tags.Cast<Match>())
         {
             string word = match.Value.ToLower();
             uniqueWords.Add(word);

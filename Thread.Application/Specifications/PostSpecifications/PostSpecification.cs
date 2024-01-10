@@ -22,7 +22,7 @@ public class PostSpecification : BaseSpecification<Post>
     public static PostSpecification GetAllPostsWithPaginationSpecification(PostParams postParams)
     {
 
-        Expression<Func<Post, bool>> criteria = postParams.ByUserId ? post => post.UserId == UserIdShared.UserId : post => postParams.IsFolowing ? post.Privacy == PostPrivacy.Follower : post.Privacy == PostPrivacy.Public;
+        Expression<Func<Post, bool>> criteria = post => post.UserId == SharedProperities.UserId || (postParams.IsFolowing ? post.Privacy == PostPrivacy.Follower : post.Privacy == PostPrivacy.Public);
 
         Func<IQueryable<Post>, IIncludableQueryable<Post, object>> include =
            post => post.Include(p => p.User)
@@ -33,7 +33,7 @@ public class PostSpecification : BaseSpecification<Post>
     public static PostSpecification GetAllPostsSpecification(PostParams postParams)
     {
 
-        Expression<Func<Post, bool>> criteria = postParams.ByUserId ? post => post.UserId == UserIdShared.UserId : post => postParams.IsFolowing ? post.Privacy == PostPrivacy.Follower : post.Privacy == PostPrivacy.Public;
+        Expression<Func<Post, bool>> criteria = post => post.UserId == SharedProperities.UserId || (postParams.IsFolowing ? post.Privacy == PostPrivacy.Follower : post.Privacy == PostPrivacy.Public);
 
         return new PostSpecification(criteria);
     }

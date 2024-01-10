@@ -1,8 +1,8 @@
 ﻿namespace Thread.API.Controllers;
 
-[ServiceFilter(typeof(LogUserActivity))]
 [Route("api/[controller]")]
 [ApiController]
+[ServiceFilter(typeof(LogUserActivity))]
 public class BaseApiController : ControllerBase
 {
 }
